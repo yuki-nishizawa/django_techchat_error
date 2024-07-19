@@ -1,15 +1,15 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView,DetailView,DeleteView
 from .models import Question
 from .forms import QuestionForm
-from django.views.generic.edit import FormMixin
+from django.views.generic.edit import FormMixin ,DeleteView
 from answers.forms import AnswerForm
 from answers.models import Answer
 from django.db.models import Count
 
 class IndexView(ListView):
     model = Question
-    template_name = 'questions/list.html'
+    template_name = 'questions/index.html'
     context_object_name = 'questions'
 
     def get_queryset(self):
@@ -22,6 +22,8 @@ class CreateView(CreateView):
 
     def form_valid(self, form):
       question = form.save(commit=False)
+      question.user = self.request.user
+      question.save()
       return super().form_valid(form)
 
 class DetailView(DetailView, FormMixin):
@@ -35,3 +37,7 @@ class DetailView(DetailView, FormMixin):
         context['answers'] = answers
         context['form'] = self.get_form()
         return context
+    
+class DeleteView(DeleteView):
+    model = Question
+    success_url = reverse_lazy('questions:index')

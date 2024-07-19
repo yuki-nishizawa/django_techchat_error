@@ -6,6 +6,6 @@ class Question(models.Model):
   class Meta:
     db_table = 'questions'
 
-  title = models.CharField()
-  content = models.TextField()
-  name = models.CharField()
+  title = models.CharField(null=False)
+  content = models.TextField(null=False)
+  user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)

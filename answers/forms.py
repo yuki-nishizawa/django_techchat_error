@@ -4,7 +4,7 @@ from .models import Answer
 class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
-        fields = ['name']
+        fields = ['name','content']
 
         widgets = {
             'content': forms.Textarea(attrs={'placeholder': '回答する', 'rows': 3}),

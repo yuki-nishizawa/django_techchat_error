@@ -48,6 +48,7 @@ header {
   border-radius: 5px;
   background-color: #FFFFFF;
   text-align: center;
+  margin-left: 10px;
 }
 
 .post-button a {
@@ -57,6 +58,16 @@ header {
   font-size: 16px;
 }
 
+.login-button {
+  display: flex; /* 横並びにする */
+  justify-content: space-between; /* 要素を均等に配置する */
+}
+
+.grid-6 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 
 /******************************************** 
   一覧画面
@@ -137,6 +148,27 @@ header {
   font-size: 12px;
 }
 
+.delete {
+  display: flex;
+  justify-content: flex-end; /* 右寄せにする */
+  margin-bottom: 10px; 
+}
+
+.delete input {
+  width: 60px; /* ボタンの幅を調整 */
+  height: 32px;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+  text-align: center;
+  border-width: 1px;
+  margin-left: 10px;
+  cursor: pointer;
+  /* 他のボタンと同様のスタイルを適用 */
+}
+
+.delete input:hover {
+  background-color: #CCCCCC;
+}
 
 /********************************************
   投稿画面

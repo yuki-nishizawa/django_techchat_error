@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
 <div class="show-main">
   <div class="show-contents">
     <!-- 質問内容の表示 -->
@@ -9,7 +13,7 @@
         {{ question.content}}
       </div>
       <div class="show-question__name">
-        {{ question.name}}
+        {{ question.user.nickname}}
       </div>
     </div>
 
@@ -51,3 +55,4 @@
   </div>  
 </div>  
 
+{% endblock content %}

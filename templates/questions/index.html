@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block content %}
 
 <!-- 一覧表示画面 -->
@@ -25,7 +26,7 @@
               <a href="{% url 'questions:detail' question.pk %}">{{ question.title }}</a>
             </div>
             <div class='question-top__name'>
-              {{ question.name}}
+              {{ question.user.nickname}}
             </div>
           </div>
           <div class='question-bottom'>
@@ -33,6 +34,14 @@
               {{ question.content}}
             </div>
           </div>
+        {% if question.user == request.user %}
+        <div class="delete">
+          <form action="{% url 'questions:delete' question.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="削除" class="delete-btn">
+          </form>
+        </div>
+        {% endif %}
         </div>
       </div>
     {% endfor %}

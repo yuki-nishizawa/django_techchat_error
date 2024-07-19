@@ -3,24 +3,32 @@
 <html>
   <head>
     <title>TechChat</title>
-    <link rel="stylesheet" href="{% static '/css/questions.css' %}">
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
   </head>
 
-  <body>  
+  <body> 
     <header>
       <div class='header-contents'>
         <div class='logo'>
           <a href="{% url 'questions:index' %}">TechChat</a>
         </div>
-        <div class='post-button'>
-          <a href="{% url 'questions:index' %}">質問する</a>
+          {% if user.is_authenticated %}
+          <div class='login-button'>
+          <div class='post-button'><a href="{% url 'questions:create' %}">質問する</a></div>
+          <div class='post-button'><a href="{% url 'logout' %}">ログアウト</a></div>
+          </div>
+          {% else %}
+          <div class="grid-6">
+            <div class="post-button"><a href={% url "users:sign_in" %}>ログイン</a></div>
+            <div class="post-button"><a href={% url "users:sign_up" %}>新規登録</a></div>
+          </div>
+          {% endif %}
         </div>
       </div>
     </header>
-
 
     {% block content %}{% endblock content %}
 
