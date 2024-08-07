@@ -15,6 +15,14 @@
       <div class="show-question__name">
         {{ question.user.nickname}}
       </div>
+      {% if question.user == request.user %}
+      <div class="delete">
+        <form action="{% url 'questions:delete' question.id %}" method="post">
+          {% csrf_token %}
+          <input type="submit" value="削除" class="delete-btn">
+        </form>
+      </div>
+      {% endif %}
     </div>
 
     <!-- 回答投稿フォームの表示 -->
